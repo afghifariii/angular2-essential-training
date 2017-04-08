@@ -1,0 +1,16 @@
+<div>
+  <div class="button-contaier">
+    <button class="button-next" (click)="nextImage()" *ngIf="images && images.length>1"> NEXT</button>
+  </div>
+  <div style="flex-grow:1;">
+    <div class="image-container">
+      <div *ngFor="let image of images">
+        <div *ngIf="image.isSelected">
+          <img [mwZoomIn]="image.isZoomAvail" class="images-container" src="{{ image && image.src ? image.src : '' }}" />
+        </div>
+      </div>
+    </div>
+    <div class="button-contaier">
+      <button class="button-next" (click)="prevImage()" *ngIf="images && images.length>1">PREV</button>
+    </div>
+  </div>

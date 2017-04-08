@@ -1,0 +1,16 @@
+.centered {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  width: 350px;
+  height: 300px;
+}
+
+.close {
+  position: fixed;
+  margin-top: 1px;
+  margin-right: 1px;
+  margin-left: 92%;
+}

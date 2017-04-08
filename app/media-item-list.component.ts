@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'mw-media-item-list',
@@ -6,8 +6,14 @@ import { Component } from '@angular/core';
   styleUrls: ['app/media-item-list.component.css']
 })
 export class MediaItemListComponent {
+  @Output() item = new EventEmitter();
 
   onMediaItemDelete(mediaItem) { }
+
+  onMediaItemShow(mediaItem) {
+    this.item.emit(mediaItem);
+  }
+
 
   mediaItems = [
     {
@@ -17,7 +23,11 @@ export class MediaItemListComponent {
       category: "Science Fiction",
       year: 2010,
       watchedOn: 1294166565384,
-      isFavorite: false
+      isFavorite: false,
+      images: [
+        { src: './media/01.png', isZoomAvail: true, isSelected: true },
+        { src: './media/02.png', isZoomAvail: true, isSelected: false }
+      ]
     },
     {
       id: 2,
@@ -26,7 +36,11 @@ export class MediaItemListComponent {
       category: "Comedy",
       year: 2015,
       watchedOn: null,
-      isFavorite: true
+      isFavorite: true,
+      images: [
+        { src: './media/01.png', isZoomAvail: true, isSelected: true },
+        { src: './media/02.png', isZoomAvail: true, isSelected: false }
+      ]
     }, {
       id: 3,
       name: "The Redemption",
@@ -34,7 +48,11 @@ export class MediaItemListComponent {
       category: "Action",
       year: 2016,
       watchedOn: null,
-      isFavorite: false
+      isFavorite: false,
+      images: [
+        { src: './media/01.png', isZoomAvail: true, isSelected: true },
+        { src: './media/02.png', isZoomAvail: true, isSelected: false }
+      ]
     }, {
       id: 4,
       name: "Hoopers",
@@ -42,7 +60,12 @@ export class MediaItemListComponent {
       category: "Drama",
       year: null,
       watchedOn: null,
-      isFavorite: true
+      isFavorite: true,
+      images: [
+        { src: './media/01.png', isZoomAvail: true, isSelected: true },
+        { src: './media/02.png', isZoomAvail: true, isSelected: false }
+      ]
+
     }, {
       id: 5,
       name: "Happy Joe: Cheery Road",
@@ -50,7 +73,11 @@ export class MediaItemListComponent {
       category: "Action",
       year: 2015,
       watchedOn: 1457166565384,
-      isFavorite: false
+      isFavorite: false,
+      images: [
+        { src: './media/01.png', isZoomAvail: true, isSelected: true },
+        { src: './media/02.png', isZoomAvail: true, isSelected: false }
+      ]
     }
   ];
 }

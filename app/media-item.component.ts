@@ -8,8 +8,13 @@ import { Component, Input, Output, EventEmitter } from '@angular/core';
 export class MediaItemComponent {
   @Input() mediaItem;
   @Output() delete = new EventEmitter();
+  @Output() show = new EventEmitter();
 
   onDelete() {
     this.delete.emit(this.mediaItem);
+  }
+
+  onShow() {
+    this.show.emit(this.mediaItem);
   }
 }

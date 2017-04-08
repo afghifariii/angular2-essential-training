@@ -1,0 +1,15 @@
+<div [hidden]="isVisible()" class="centered">
+  
+  <button class="close" (click)=" onClose()">X</button>
+  <div>
+    <mw-image [images]="imagesList()"></mw-image>
+  </div>
+  <br/>
+  <br/>
+  <h1>Selected Media Item: </h1>
+  <h1>{{ popupItem ? "Name: "+popupItem.name:"" }}</h1>
+  <h2>{{ popupItem ? "Watched: "+popupItem.watchedOn:"" }}</h2>
+  <h2>{{ popupItem ? "Media: "+popupItem.medium:"" }}</h2>
+  <h2>{{ popupItem ? "Category: "+popupItem.category:"" }}</h2>
+  <h2>{{ popupItem ? "Year: "+popupItem.year:"" }}</h2>
+</div>
