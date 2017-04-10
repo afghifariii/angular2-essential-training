@@ -1,5 +1,7 @@
 import { Component, Output, EventEmitter } from '@angular/core';
 
+import { MediaItemService } from "./media-item.service";
+
 @Component({
   selector: 'mw-media-item-list',
   templateUrl: 'app/media-item-list.component.html',
@@ -8,76 +10,32 @@ import { Component, Output, EventEmitter } from '@angular/core';
 export class MediaItemListComponent {
   @Output() item = new EventEmitter();
 
-  onMediaItemDelete(mediaItem) { }
+  mediaItems;
+  medium = '';
+
+  constructor(private mediaItemService: MediaItemService) { }
+
+  ngOnInit() {
+    this.getMediaItems(this.medium);
+  }
+
+  getMediaItems(medium) {
+    this.medium = medium;
+    this.mediaItemService.get(medium)
+      .subscribe(mediaItems => {
+        this.mediaItems = mediaItems  
+      });
+  }
+
+  onMediaItemDelete(mediaItem) {
+    this.mediaItemService.remove(mediaItem)
+    .subscribe(() => {
+      this.getMediaItems(this.medium)
+    });
+  }
 
   onMediaItemShow(mediaItem) {
     this.item.emit(mediaItem);
   }
 
-
-  mediaItems = [
-    {
-      id: 1,
-      name: "Firebug",
-      medium: "Series",
-      category: "Science Fiction",
-      year: 2010,
-      watchedOn: 1294166565384,
-      isFavorite: false,
-      images: [
-        { src: './media/01.png', isZoomAvail: true, isSelected: true },
-        { src: './media/02.png', isZoomAvail: true, isSelected: false }
-      ]
-    },
-    {
-      id: 2,
-      name: "The Small Tall",
-      medium: "Movies",
-      category: "Comedy",
-      year: 2015,
-      watchedOn: null,
-      isFavorite: true,
-      images: [
-        { src: './media/01.png', isZoomAvail: true, isSelected: true },
-        { src: './media/02.png', isZoomAvail: true, isSelected: false }
-      ]
-    }, {
-      id: 3,
-      name: "The Redemption",
-      medium: "Movies",
-      category: "Action",
-      year: 2016,
-      watchedOn: null,
-      isFavorite: false,
-      images: [
-        { src: './media/01.png', isZoomAvail: true, isSelected: true },
-        { src: './media/02.png', isZoomAvail: true, isSelected: false }
-      ]
-    }, {
-      id: 4,
-      name: "Hoopers",
-      medium: "Series",
-      category: "Drama",
-      year: null,
-      watchedOn: null,
-      isFavorite: true,
-      images: [
-        { src: './media/01.png', isZoomAvail: true, isSelected: true },
-        { src: './media/02.png', isZoomAvail: true, isSelected: false }
-      ]
-
-    }, {
-      id: 5,
-      name: "Happy Joe: Cheery Road",
-      medium: "Movies",
-      category: "Action",
-      year: 2015,
-      watchedOn: 1457166565384,
-      isFavorite: false,
-      images: [
-        { src: './media/01.png', isZoomAvail: true, isSelected: true },
-        { src: './media/02.png', isZoomAvail: true, isSelected: false }
-      ]
-    }
-  ];
 }
